@@ -1,0 +1,81 @@
+---
+title: "Japanese plural asociative plural on kinship with suffix -tachi"
+date: 06.19.2018
+author: Kanami Tobe
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: show
+
+---
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Materials  
+[Link to the data set](https://github.com/Imanak06/Quantitative-Analysis-and-Visualisation/blob/master/Project/detasetto.csv) (csv file)  
+
+
+## Introduction  
+
+Describe the phenomenon.
+
+Provide information about the language (only for minor languages).
+
+Mention some previous research (optional).
+
+
+## Research hypothesis  
+
+...
+Discuss possible relevant factors.  
+Formulate null hypothesis.
+
+
+## Data  
+
+* Dependent variable, its type  
+
+* Predictor variables, their types, range/levels  
+
+* Number of observations  
+
+```{r dataset}
+DS <- read.csv("/Users/kanami/Desktop/detasetto.csv")  
+summary(DS)
+str(DS)
+```
+
+### Data collection and annotation   
+Mention the source of your data, details of data collection. Justify the amount of data under study. In addition, you can discuss certain difficulties, peculiarities and shortcomings in data collection and annotation.  
+Original data from Corpus of Spontaneous Japanese『日本語話し言葉コーパス』 
+190 kinship terms with suffix -tachi 
+
+
+
+### Data considerations
+
+Discuss research design (if applicable), independence, autocorrelation, nestedness of data, possible biases, etc.
+
+
+## R libraries in use
+```{r libraries}
+library(tidyverse)
+# include R libraries here or later
+```
+
+
+## Analysis: descriptive statistics
+In this section you can put tables and plots that show data distribution for individual variables and distribution for pairs of variables. Histograms, density plots, boxplots (or violin plots), mosaic plots are recommended. You can also provide some basic statistical analysis, such as correlation, statistical significance, t-test and other simple tests. If you calculate a chi-square statistic, do not forget to estimate the effect size.
+
+## Multi-factor analysis  
+At least two different methods have to be used. Please provide the output models summaries and graphs. Please evaluate your models (show and interpret relevant indicators such as classification accuracy, goodness of fit, classification power, inertia, variable significance, variable importance, etc.).   
+It is recommended to report, when needed, how did you fit the model, did you find any signs of overfitting, why do you believe that certain model is an optimal one, etc.
+
+## Linguistic interpretation of the quantitative results  
+
+## Discussion on data distribution and quantitative methods in use   
+
+In conclusion, you can suggest ideas for further development of your research (correction of hypotheses, work with the data, their statistical analysis).
