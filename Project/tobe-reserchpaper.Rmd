@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ### Materials  
-[Link to the data set](https://github.com/Imanak06/Quantitative-Analysis-and-Visualisation/blob/master/Project/detasetto.csv) (csv file)  
+[Link to the data set](Quantitative-Analysis-and-Visualisation/Project/detasetto.csv) (csv file)  
 
 
 ## Introduction  
