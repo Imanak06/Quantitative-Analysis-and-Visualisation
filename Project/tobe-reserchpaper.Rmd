@@ -43,7 +43,7 @@ Formulate null hypothesis.
 * Number of observations  
 
 ```{r dataset}
-DS <- read.csv("/Users/kanami/Desktop/detasetto.csv")  
+DS <- read.csv("Quantitative-Analysis-and-Visualisation/Project/detasetto.csv")  
 summary(DS)
 str(DS)
 ```
