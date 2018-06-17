@@ -2,8 +2,7 @@
 title: "Japanese plural asociative plural on kinship with suffix -tachi"
 date: 06.19.2018
 author: Kanami Tobe
-output:
-  html_document:
+output:html_document:
     toc: true
     toc_float: true
     code_folding: show
@@ -43,9 +42,9 @@ Formulate null hypothesis.
 * Number of observations  
 
 ```{r dataset}
-DS <- read.csv("Quantitative-Analysis-and-Visualisation/Project/detasetto.csv")  
-summary(DS)
-str(DS)
+DS <- read.csv("/Users/kanami/Desktop/detasetto.csv", sep=',',header = TRUE)  
+summary(ds)
+str(ds)
 ```
 
 ### Data collection and annotation   
@@ -63,11 +62,25 @@ Discuss research design (if applicable), independence, autocorrelation, nestedne
 ## R libraries in use
 ```{r libraries}
 library(tidyverse)
+library(DT)
 # include R libraries here or later
 ```
 
 
 ## Analysis: descriptive statistics
+```
+sum <- summary(ds)
+sum
+
+tableds <- table(ds[,1])
+ue <- sort(tableds)
+library(DT)
+DT::datatable(ds, 
+              rownames = FALSE,
+              colnames= c("Kinship","Additive or Associative","Transcription" ),
+              caption = "kinship with suffix -tachi")
+```
+
 In this section you can put tables and plots that show data distribution for individual variables and distribution for pairs of variables. Histograms, density plots, boxplots (or violin plots), mosaic plots are recommended. You can also provide some basic statistical analysis, such as correlation, statistical significance, t-test and other simple tests. If you calculate a chi-square statistic, do not forget to estimate the effect size.
 
 ## Multi-factor analysis  
