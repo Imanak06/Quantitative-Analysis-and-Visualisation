@@ -19,11 +19,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Introduction  
 
-Describe the phenomenon.
+"In Japanese there are three plural markers with noun, suffix -tachi, -ra, and -domo.  In CSJ, in comparison with -ra (3,769) and -domo (323), -tachi (6,652) is relatively frequent. Suffix -tachi, which can be attached to most of animate noun, often can be replaced by suffix -ra, which is more formal (Martin 1975). Suffix -domo has depreciative meaning, and often co-occurs with the first person pronoun to express honorific meaning (“humble” first person)." (Tobe,2018)
+ 
+ In the previous reserch, 9 types of vocaburally which cooccuers with plural marker -tachi were found (Human related common noun, Inanimate, Plants, Animal, Kinship, Last Name -san "honorific", Last Name, First name and Pronoun. Often kinship and 
 
-Provide information about the language (only for minor languages).
+ "The associative plural most likely combines with nouns referring to humans proper names, kinship terms, titles and occupations." (Moravcsik 1994; Corbett 2000: p.102)
+But, in Japanese, kinship term often used as a human related common noun. In the privious reserch, it was not mantioned that which kinship term concider to be accociative and additive plural.
 
-Mention some previous research (optional).
 
 
 ## Research hypothesis  
@@ -74,11 +76,21 @@ sum
 
 tableds <- table(ds[,1])
 ue <- sort(tableds)
-library(DT)
 DT::datatable(ds, 
               rownames = FALSE,
               colnames= c("Kinship","Additive or Associative","Transcription" ),
               caption = "kinship with suffix -tachi")
+             
+gen <- table(ds[,4])              
+pie(gen)
+slices <- c(gen) 
+lbls <- c("female", "male", "Nutral")
+pct <- round(slices/sum(slices)*100)
+lbls <- paste(lbls, pct) # add percents to labels 
+lbls <- paste(lbls,"%",sep="") # ad % to labels 
+pie(slices,labels = lbls, col=rainbow(length(lbls)),
+  	main="Gender of kinshipterms")
+
 ```
 
 In this section you can put tables and plots that show data distribution for individual variables and distribution for pairs of variables. Histograms, density plots, boxplots (or violin plots), mosaic plots are recommended. You can also provide some basic statistical analysis, such as correlation, statistical significance, t-test and other simple tests. If you calculate a chi-square statistic, do not forget to estimate the effect size.
