@@ -1,5 +1,5 @@
 ---
-title: "Japanese plural asociative plural on kinship with suffix -tachi"
+title: "Japanese plural associative plural on kinship with suffix -tachi"
 date: 06.19.2018
 author: Kanami Tobe
 output:html_document:
@@ -31,17 +31,18 @@ But, in Japanese, kinship term often used as a human related common noun. In the
 ## Research hypothesis  
 
 ...
-Discuss possible relevant factors.  
-Formulate null hypothesis.
+There are correlation between type of kinship terms and associative plural.
+
+Null hypothesis on this research is that there will be no correlation between type of kinship terms and associative plural.
 
 
 ## Data  
 
-* Dependent variable, its type  
+Original data used in this project was collected from Corpus of Spontaneous Japanese『日本語話し言葉コーパス』. After the collection manually typed data whether the target word set is associative plural or additiveplural by reading sentences. 
 
-* Predictor variables, their types, range/levels  
+Predictor variables: ‘Date’ - numeric; year of the publication ’Genre’ - categorical; 'SPOK' - spoken, 'ACPROSE' - academic prose, 'NONAC' - non-academic prose, 'OTHERPUB' - other publications (includes magazine publications from COCA), 'FICTION', 'NEWS'
 
-* Number of observations  
+
 
 ```{r dataset}
 DS <- read.csv("Quantitative-Analysis-and-Visualisation/Project/detasetto.csv", sep=',',header = TRUE)  
@@ -52,7 +53,7 @@ str(ds)
 ### Data collection and annotation   
 Mention the source of your data, details of data collection. Justify the amount of data under study. In addition, you can discuss certain difficulties, peculiarities and shortcomings in data collection and annotation.  
 Original data from Corpus of Spontaneous Japanese『日本語話し言葉コーパス』 
-190 kinship terms with suffix -tachi 
+190 kinship terms with suffix -tachi found.
 
 
 
@@ -65,22 +66,31 @@ Discuss research design (if applicable), independence, autocorrelation, nestedne
 ```{r libraries}
 library(tidyverse)
 library(DT)
+library(psych)
+library(ggplot2)
+library(tabplot)
 # include R libraries here or later
 ```
 
 
 ## Analysis: descriptive statistics
 ```
+
+ds <- read.csv("/Users/kanami/Desktop/detasetto.csv", sep=',',header = TRUE)  
 sum <- summary(ds)
 sum
 
 tableds <- table(ds[,1])
-ue <- sort(tableds)
+sds <- sort(tableds)
+
+
+
+library(DT)
 DT::datatable(ds, 
               rownames = FALSE,
-              colnames= c("Kinship","Additive or Associative","Transcription" ),
+              colnames= c("Kinship","Additive or Associative","Transcription", "gender" ),
               caption = "kinship with suffix -tachi")
-             
+ 
 gen <- table(ds[,4])              
 pie(gen)
 slices <- c(gen) 
@@ -91,16 +101,61 @@ lbls <- paste(lbls,"%",sep="") # ad % to labels
 pie(slices,labels = lbls, col=rainbow(length(lbls)),
   	main="Gender of kinshipterms")
 
+sds[sds>1]
+
+#check the total number of associative and additive
+mi<- table(ds$dsds)
+mi
+
+#additive 162 and associative 28
+barplot(mi, xlab = "Additive D and Associative S", ylab = "number")
+
+#take out only associative plurals
+aso <- ds[ds$dsds == "s",]
+
+#gender in associative
+asogen <- table(aso$gender)
+#kinship in associatives
+asokin0 <- table(aso$kinship)
+#take a look which kinship terms were used as associatives
+asokin <- asokin0[asokin0>0]
+
+
 ```
 
-In this section you can put tables and plots that show data distribution for individual variables and distribution for pairs of variables. Histograms, density plots, boxplots (or violin plots), mosaic plots are recommended. You can also provide some basic statistical analysis, such as correlation, statistical significance, t-test and other simple tests. If you calculate a chi-square statistic, do not forget to estimate the effect size.
 
 ## Multi-factor analysis  
-At least two different methods have to be used. Please provide the output models summaries and graphs. Please evaluate your models (show and interpret relevant indicators such as classification accuracy, goodness of fit, classification power, inertia, variable significance, variable importance, etc.).   
-It is recommended to report, when needed, how did you fit the model, did you find any signs of overfitting, why do you believe that certain model is an optimal one, etc.
+```
+#corrolation 
+library(psych)
+psych::pairs.panels(ds)
+
+all <- ds[,-3]
+pairs(all, panel = panel.smooth)
+
+#take out only additives
+adi <- ds[ds$dsds == "d",]
+
+#remove annotation from additives
+adic <- adi[,-3]
+library(tabplot)
+#not good example
+tableplot(adic)
+#try again with pairs
+  pairs(adic, panel = panel.smooth)
+
+#remove annotation from associatives 
+asoc <-  aso[,-3]
+
+#check cor in associatives
+pairs(asoc, panel = panel.smooth)
+```
+
 
 ## Linguistic interpretation of the quantitative results  
+No corrolation found which means there are other factors which make kinship term with plural suffix -tachi associative plural.
 
 ## Discussion on data distribution and quantitative methods in use   
 
-In conclusion, you can suggest ideas for further development of your research (correction of hypotheses, work with the data, their statistical analysis).
+In conclusion, null hypothesis were accepted. No corrolation found.
+used "tabplot" was not a good idea.
